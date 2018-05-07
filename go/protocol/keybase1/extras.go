@@ -1375,7 +1375,7 @@ func (u UserPlusKeysV2) FindDeviceKey(needle KID) *PublicKeyV2NaCl {
 	return nil
 }
 
-func (u UserPlusKeysV2) FindSigningDeviceKey(d DeviceID) (*PublicKeyV2NaCl) {
+func (u UserPlusKeysV2) FindSigningDeviceKey(d DeviceID) *PublicKeyV2NaCl {
 	for _, k := range u.DeviceKeys {
 		if k.DeviceID.Eq(d) && k.Base.IsSibkey {
 			return &k
