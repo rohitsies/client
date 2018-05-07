@@ -2312,3 +2312,9 @@ func NewTeamProvisionalError(canKey bool, isPublic bool, dn string) error {
 }
 
 //=============================================================================
+
+type NoActiveDeviceError struct{}
+
+func (e NoActiveDeviceError) Error() string { return "no active device" }
+
+//=============================================================================
