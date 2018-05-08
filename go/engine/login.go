@@ -190,11 +190,11 @@ func (e *Login) checkLoggedInAndNotRevoked(m libkb.MetaContext) (bool, error) {
 		return true, nil
 	case libkb.NoActiveDeviceError:
 		return false, nil
-	case libkb.UserNotFoundError, libkb.DeviceNotFoundError:
+	case libkb.UserNotFoundError:
 		m.CDebugf("Login: %s", err.Error())
 		return false, err
-	case libkb.KeyRevokedError:
-		m.CDebugf("Login on revoked device: %s", err.Error())
+	case libkb.KeyRevokedError, libkb.DeviceNotFoundError:
+		m.CDebugf("Login on revoked or reset device: %s", err.Error())
 		if err = m.G().Logout(); err != nil {
 			m.CDebugf("logout error: %s", err)
 		}

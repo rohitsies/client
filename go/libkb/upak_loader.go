@@ -675,7 +675,7 @@ func (u *CachedUPAKLoader) lookupUsernameAndDeviceWithInfo(ctx context.Context, 
 }
 
 func (u *CachedUPAKLoader) CheckDeviceForUIDAndUsername(ctx context.Context, uid keybase1.UID, did keybase1.DeviceID, n NormalizedUsername) (err error) {
-	arg := NewLoadUserByUIDArg(ctx, u.G(), uid).WithForcePoll(true)
+	arg := NewLoadUserByUIDArg(ctx, u.G(), uid).WithForcePoll(true).WithPublicKeyOptional()
 	foundUser := false
 	foundDevice := false
 	isRevoked := false
